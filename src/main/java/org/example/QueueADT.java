@@ -5,7 +5,7 @@ import java.util.Queue;
 public class QueueADT <Type>{
 int front, size, back;
 Type[] arrays;
-
+//
     public QueueADT(int size) {
         this.size = size;
         this.front = 0;
