@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class Duplicates {
     public static void main(String[] args) {
@@ -17,16 +18,12 @@ public class Duplicates {
         integers.add(88);
         integers.add(-20);
 
-        HashSet<Integer> integers1 = new HashSet<>();
-        PriorityQueue<Integer> integers2 = new PriorityQueue<>();
-        for(Integer integer : integers){
-            if(!integers1.add(integer)){
-                integers2.remove(integer);
-            }else {
-                integers2.add(integer);
-            }
-        }
+        PriorityQueue<Integer> uniqueIntegers = new PriorityQueue<>(
+                integers.stream()
+                        .filter(i -> integers.stream().filter(x -> x.equals(i)).count() == 1)
+                        .collect(Collectors.toSet())
+        );
 
-        System.out.println(integers2);
+        System.out.println(uniqueIntegers);
     }
 }
