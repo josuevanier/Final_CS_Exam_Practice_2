@@ -1,5 +1,37 @@
 package org.example;
+class QueueADTS<Type>{
+    int front,size,back;
+    Type[] arrays;
 
+    public QueueADTS(int size) {
+        this.size = size;
+        front = 0;
+        back = 0;
+        this.arrays = (Type[]) new Object[size];
+    }
+    public boolean isEmpty(){
+        return front == back;
+    }
+    public boolean isFull(){
+        return back  == size;
+    }
+
+    public void enqueue(Type value){
+        if(!isFull()){
+            arrays[back] = value;
+            back++;
+        }else System.out.println("Queue is full");
+    }
+
+    public Type dequeue(){
+        if(!isEmpty()){
+            Type Todequeue = arrays[front];
+            front++;
+            return Todequeue;
+        }else System.out.println("Queue is empty");
+        return  null;
+    }
+}
 class StackADTS<Type>{
     int size;
     Type[] arrays;
@@ -42,28 +74,29 @@ class StackADTS<Type>{
 public class StacksProblems {
 
     public static void main(String[] args) {
-        String str = "kayak";
-        StackADTS<Character> strings = new StackADTS<>(str.length());
+        String str = "radar";
+
+
+        QueueADTS<Character> charQ = new QueueADTS<>(str.length());
 
         for(int i = 0; i < str.length(); i++){
-            strings.push(str.charAt(i));
+            charQ.enqueue(str.charAt(i));
         }
-        strings.display();
 
-        boolean isFlase = true;
+        boolean isFlased = true;
         try {
-            for (int i = 0; i < str.length(); i++) {
-                char c = strings.pop();
-                if (str.charAt(i) != c) {
-                    isFlase = false;
+            for(int i = str.length() - 1; i >= 0; i--){
+                char cs = charQ.dequeue();
+                if(str.charAt(i) != cs){
+                    isFlased = false;
                 }
             }
-
-            System.out.println(isFlase);
+            System.out.println(isFlased);
         }catch (NullPointerException e){
             System.out.println(e.getMessage());
         }
 
+        System.out.println(numbers(5));
     }
 
     public  static  boolean isPalyndrome(StackADTS<Character> characterStackADT, String str){
@@ -78,5 +111,13 @@ public class StacksProblems {
             }
         }
         return true;
+    }
+
+    public static int numbers(int n){
+        if( n <= 1){
+            return n;
+        }else {
+      return  n * numbers(n - 1);
+        }
     }
 }

@@ -6,6 +6,7 @@ class HeapSort{
 
 }
 class MergeSort{
+    //nlog(n )
     public static void merge(int[] left, int[] right,int[] array){
         int leftSize = array.length / 2;
         int rightSize = array.length - leftSize;
@@ -58,6 +59,7 @@ class MergeSort{
     }
 }
 class QuickSort{
+    //nlog(n)
     public static int[] QuickSortAlgorithm(int[] arrays, int start, int end){
 
         if (end <= start) return arrays;
@@ -81,6 +83,7 @@ class QuickSort{
     }
 }
 class InsertionSort{
+    //On^2
     public static int[] InsertionSortAlgorithm(int[] arrays){
         for(int i = 1; i < arrays.length; i++ ){
        int   temp = arrays[i];
@@ -95,6 +98,7 @@ class InsertionSort{
     }
 }
 class selectionSortAlgorithm{
+    //O(n^2)
     public static int[] SelectionSortAlgorithm(int[] arrays){
        int minValue, minIndex = 0;
        int temp;
@@ -118,6 +122,7 @@ class selectionSortAlgorithm{
     }
 }
 class BubbleSort{
+    // On^2
     public static int[] BubbleSortAlgorithm(int[] arrays){
         int temp;
         for(int i = 0; i < arrays.length; i++){
